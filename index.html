@@ -29,7 +29,10 @@
             </div>
 
             <div id="list-wrapper">
-                <div class="item" v-bind:class="{importante : item.importante, feito : item.feito}" v-for="item in lista">
+                <div class="item" v-bind:class="{importante : item.importante, feito : item.feito}" v-for="item in lista"
+                
+                v-on:click="item.feito = !item.feito"
+                >
                     <p class="texto-item"> {{ item.texto }} </p>
                 </div>
             
