@@ -16,12 +16,23 @@
             <h1>TODO.LIST</h1>
             <div id="form-wrapper">
                 <div id="o-form">
-                    <input type="text" id="text-novo-item" v-model="textoNovoItem">
+                    <input 
+                    type="text" 
+                    id="text-novo-item" 
+                    v-model="textoNovoItem"
+                    @keyup.enter="salvarNovoItem">
                     <div>
-                        <input type="checkbox" id="is-importante" v-model="novoItemImportante" @keyup.enter="salvarNovoItem">
+                        <input 
+                        type="checkbox" 
+                        id="is-importante" 
+                        v-model="novoItemImportante" 
+                        >
+
                         <label for="is-importante"> Importante</label><br>
                     </div>
-                    <button @click="salvarNovoItem">
+                    <button 
+                    @click="salvarNovoItem"
+                    v-if="textoNovoItem.length > 0">
                         Salvar
                     </button>
                 </div>
@@ -29,12 +40,12 @@
             </div>
 
             <div id="list-wrapper">
-                <div class="item" 
+                <div 
+                class="item" 
                 v-bind:class="{importante : item.importante, feito : item.feito}" 
                 v-for="item in lista"
                 v-on:click="item.feito = !item.feito"                
-                :key="item.id"
-                >
+                :key="item.id">
                     <p class="texto-item"> {{ item.texto }} </p>
                 </div>
             
@@ -53,7 +64,9 @@
             methods: {
                 salvarNovoItem() {
 
-                    let novoItem = {
+                    if(this.textoNovoItem.length > 0) {
+                        
+                        let novoItem = {
                         id: new Date().getTime(),
                         texto: this.textoNovoItem,
                         importante: this.novoItemImportante,
@@ -63,6 +76,7 @@
                     this.lista.push(novoItem);
                     this.textoNovoItem = "";
                     this.novoItemImportante = false;
+                    }
                 }
             }
         }).mount("#app")
