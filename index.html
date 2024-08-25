@@ -29,9 +29,11 @@
             </div>
 
             <div id="list-wrapper">
-                <div class="item" v-bind:class="{importante : item.importante, feito : item.feito}" v-for="item in lista"
-                
-                v-on:click="item.feito = !item.feito"
+                <div class="item" 
+                v-bind:class="{importante : item.importante, feito : item.feito}" 
+                v-for="item in lista"
+                v-on:click="item.feito = !item.feito"                
+                :key="item.id"
                 >
                     <p class="texto-item"> {{ item.texto }} </p>
                 </div>
@@ -45,35 +47,22 @@
                 return {
                     textoNovoItem: "",
                     novoItemImportante: false,
-                    lista: [
-                        {
-                            texto: 'Item importante',
-                            importante: true,
-                            feito: false,
-                        },
-                        {
-                            texto: 'Item feito',
-                            importante: false,
-                            feito: true,
-                        }, 
-                        {
-                            texto: 'Item a fazer',
-                            importante: false,
-                            feito: false,
-                        },
-                    ]
+                    lista: []
                 }
             },
             methods: {
                 salvarNovoItem() {
 
                     let novoItem = {
+                        id: new Date().getTime(),
                         texto: this.textoNovoItem,
                         importante: this.novoItemImportante,
                         feito: false,
                     }
 
-                    this.lista.push(novoItem)
+                    this.lista.push(novoItem);
+                    this.textoNovoItem = "";
+                    this.novoItemImportante = false;
                 }
             }
         }).mount("#app")
