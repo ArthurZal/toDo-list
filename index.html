@@ -16,12 +16,12 @@
             <h1>TODO.LIST</h1>
             <div id="form-wrapper">
                 <div id="o-form">
-                    <input type="text" id="text-novo-item">
+                    <input type="text" id="text-novo-item" v-model="textoNovoItem">
                     <div>
-                        <input type="checkbox" id="is-importante">
+                        <input type="checkbox" id="is-importante" v-model="novoItemImportante">
                         <label for="is-importante"> Importante</label><br>
                     </div>
-                    <button>
+                    <button v-on:click="salvarNovoItem">
                         Salvar
                     </button>
                 </div>
@@ -43,6 +43,8 @@
         Vue.createApp({
             data() {
                 return {
+                    textoNovoItem: "",
+                    novoItemImportante: false,
                     lista: [
                         {
                             texto: 'Item importante',
@@ -62,6 +64,18 @@
                     ]
                 }
             },
+            methods: {
+                salvarNovoItem() {
+
+                    let novoItem = {
+                        texto: this.textoNovoItem,
+                        importante: this.novoItemImportante,
+                        feito: false,
+                    }
+
+                    this.lista.push(novoItem)
+                }
+            }
         }).mount("#app")
     </script>
 
