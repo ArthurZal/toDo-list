@@ -29,7 +29,7 @@
             </div>
 
             <div id="list-wrapper">
-                <div class="item" v-for="item in lista">
+                <div class="item" v-bind:class="{importante : item.importante, feito : item.feito}" v-for="item in lista">
                     <p class="texto-item"> {{ item.texto }} </p>
                 </div>
             
