@@ -36,7 +36,7 @@
                         Salvar
                     </button>
                 </div>
-                <p id="contagem"></p>
+                <p id="contagem"> {{ qtdeDigitada }}/20 </p>
             </div>
 
             <div id="list-wrapper">
@@ -77,6 +77,11 @@
                     this.textoNovoItem = "";
                     this.novoItemImportante = false;
                     }
+                }
+            },
+            computed: {
+                qtdeDigitada() {
+                    return this.textoNovoItem.length
                 }
             }
         }).mount("#app")
