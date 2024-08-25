@@ -29,8 +29,8 @@
             </div>
 
             <div id="list-wrapper">
-                <div class="item">
-                    <p class="texto-item">Item a Fazer</p>
+                <div class="item" v-for="item in lista">
+                    <p class="texto-item"> {{ item.texto }} </p>
                 </div>
             
             </div>
@@ -55,7 +55,7 @@
                             texto: 'Item a fazer',
                             importante: false,
                             feito: false,
-                        }
+                        },
                     ]
                 }
             },
