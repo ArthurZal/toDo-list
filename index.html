@@ -18,10 +18,10 @@
                 <div id="o-form">
                     <input type="text" id="text-novo-item" v-model="textoNovoItem">
                     <div>
-                        <input type="checkbox" id="is-importante" v-model="novoItemImportante">
+                        <input type="checkbox" id="is-importante" v-model="novoItemImportante" @keyup.enter="salvarNovoItem">
                         <label for="is-importante"> Importante</label><br>
                     </div>
-                    <button v-on:click="salvarNovoItem">
+                    <button @click="salvarNovoItem">
                         Salvar
                     </button>
                 </div>
